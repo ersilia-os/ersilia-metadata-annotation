@@ -7,12 +7,12 @@ load_dotenv()
 # client that is used to make requests to the OpenAI's API
 client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
-def summarize(text):
+def summarize(prompt, text):
     # creates a new chat that generates a response
     completion = client.chat.completions.create(
         model= "gpt-4",
         messages=[
-            {"role": "user", "content": f"Summarize this please: {text}"}
+            {"role": "user", "content": f"{prompt}: {text}"}
         ]
     )
     # returns the text content of the response
